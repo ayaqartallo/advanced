@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/design.css">
+</head>
+<body>
+<nav>
+    <a class="nav"; style='padding: 20px;position:absolute; top:0.01px;left:0px;text-decoration: none;'  href='profile.html'> Edit Profile </a>
+    <a class="nav"; style=' padding: 20px;position:absolute; top:0.01px;left:150px;text-decoration: none ;'  href="Fav.html"> Favorite List </a>
+</nav>
+<br><br><br><br>
+
+<div class="card ">
+    <div class="card-body">
+        <div class="account-settings">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="Maxwell Admin">
+                </div>
+                <h5 class="user-name" style="font-size: larger">Yasmeen Ayesh</h5>
+                <h6 class="user-email" style="font-size:medium" >Yasmeen.Ay@Gmail.com</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h6  align="center" >Personal Details</h6>
+<form method="post" action="profile.php" >
+<div class="card "  align="center">
+    <br>
+<table style='background-color: #f2f2f2 ;' class='table sticky'>
+    <tr  style='border: 2px solid black;font-weight:bold'>
+      <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+          <label for="fullName">Full Name</label>
+      </td>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+            <input type="text" class="form-control" id="fullName" name="f" placeholder="Enter full name"style='height: 30px;' >
+        </td>
+    </tr>
+
+    <tr style='border: 2px solid black;font-weight:bold'>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+    <label for="eMail">Email</label>
+        </td>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+    <input type="email" class="form-control" id="eMail" name="e" placeholder="Enter email ID" style='height: 30px;'>
+        </td>
+    </tr>
+
+    <tr style='border: 2px solid black;font-weight:bold'>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+    <label for="phone">Phone</label>
+        </td>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+    <input type="text" class="form-control" id="phone" name="p" placeholder="Enter phone number" style='height: 30px;'>
+        </td>
+    </tr>
+
+    <tr style='border: 2px solid black;font-weight:bold'>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+    <label for="Country">Country</label>
+        </td>
+        <td style='background-color:#A0FF33 ;font-weight: 500;height: 20px;'>
+    <input type="text" class="form-control" id="Country" name="c" placeholder="Enter Country" style='height: 30px;'>
+        </td>
+    </tr>
+</table>
+    <br>
+</div>
+
+<div align="center" class="card">
+    <input  style=' text-align:center; font-weight: 1000;height: 50px; background: azure' type="button" id="id" name="cancel" value="Cancel" onclick=""></input>
+
+    <input  style=' text-align:center; font-weight: 1000;height: 50px; background: azure' type="submit" class="form-control" name="submit" value="Update" ></input>
+
+</div>
+</form>
+
+
+
+</body>
+</html>
