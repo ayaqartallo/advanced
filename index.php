@@ -25,7 +25,8 @@
         <div class="nav-icons">
             <i class='bx bx-filter bx-tada' id="filter-icon"></i>
        <a href="profile1.php" >  <i  class='bx bx-user ' ></i> </a>
-            <i class='bx bx-chart' ></i>
+       <a href="chart.php" > <i class='bx bx-chart' ></i> </a>
+            
 
             <div class="menu-icon">
 <div class="line1"></div>
@@ -43,6 +44,7 @@
     if(isset($_SESSION['uid']))
         {
             ?>
+            
              <li > <a>&nbsp;&nbsp;HI 🙋‍♀<?php echo $_SESSION['uid']; ?> </a></li>&nbsp;&nbsp;
 
      
@@ -315,11 +317,7 @@
 </section>
 
 <section class="trendy container" id="apps">
-<div class="heading">
-    <i class='bx bxs-flame'></i>
-    <h2>All Apps</h2>
-</div>
-<div class="trendy-content">
+
     
 <?php
                                $host = "localhost";
@@ -346,6 +344,7 @@
                                        $t = $_GET['c'];
                                        if($t=="all")
                                        {
+                                        $t="All Apps";
                                         $query = "select * from google limit  $start_from,$num_per_page";
                                        }
                                        else{
@@ -354,11 +353,20 @@
                                    }
                                    else
                                    {
+                                    $_GET['c']="all"; 
                                     $query = "select * from google limit  $start_from,$num_per_page";
+                                    $t="All Apps";
+                                   
                                    }
                                   
-                                   $result = mysqli_query($con,$query);
-                                   
+                                   $result = mysqli_query($con,$query);?>
+                                   <div class="heading">
+                             <i class='bx bxs-flame'></i>
+    
+                          <?php echo "<h2>$t</h2> "?>
+                              </div>
+                             <div class="trendy-content">
+                                 <?php  
 								while($r = mysqli_fetch_array($result))
 								{	
 								?>
