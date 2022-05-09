@@ -1,232 +1,107 @@
 <?php session_start(); ?>
-<?php include "header.php"; ?>
+<?php
+    if(isset($_SESSION['uid']))
+        {
+           
+             $u= $_SESSION['uid'];
+         
+            
+                          
+     }
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>FAVORITE LIST</title>
-    <link rel="stylesheet" href="css/design.css">
+    <link rel="stylesheet" href="css/design2.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/swiper-bundle.min.css" >
 </head>
 <body>
 <nav>
-    <a class="nav" ; style='padding: 20px;position:absolute; top:0.01px;left:0px;text-decoration: none;'  href="profile1.php"> Edit Profile </a>
-    <a class="nav" ; style=' padding: 20px;position:absolute; top:0.01px;left:150px;text-decoration: none;'  href="Fav.html"> Favorite List </a>
+
+<a class="nav" ; style=' padding: 20px;position:absolute; color: #3BC6F8;top:0.01px;left:0px;text-decoration: none;'  href="index.php"> Home </a>
+    <a class="nav" ; style='padding: 20px;position:absolute; color: #3BC6F8;top:0.01px;left:120px;text-decoration: none;'  href="profile1.php"> Edit Profile </a>
+    <a class="nav" ; style=' padding: 20px;position:absolute; color: #3BC6F8; top:0.01px;left:300px;text-decoration: none;'  href="Fav.php"> Favorite List </a>
+
 </nav>
 <br>
-
 <section class="trendy container" id="apps">
-    <div class="heading">
-        <i class='bx bxs-flame'></i>
-        <h2>Favorite Apps</h2>
-    </div>
+<div class="heading">
+    <i class='bx bxs-flame'></i>
+    <h2>All Apps</h2>
+</div>
+<div class="trendy-content">
+    
+<?php
+                                $host = "localhost";
+                                $dbUsername = "root";
+                                $dbPassword = "";
+                                $dbName = "app_store";
+                                $con = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+                               
+                                $s = mysqli_query($con,"select * from fav where idu='$u'");
+                                while($r = mysqli_fetch_array($s))
+                                {
+                                  $i=$r['id'];
+                                   
+                                    ?>
+                               
+								
+                <div class="itemBox">
+        <img src="img/pic1.png" alt="pubge">
+        <div class="box-text">
+        <h2><?php echo $r['name']; ?></h2>
+        <h3><?php echo $r['category']; ?></h3>
+        
+        <div class="rate-down-price">
+        <div class="rating">
+        <i class='bx bxs-star'></i>
+        <span><?php echo $r['rate']; ?></span>
+        
+        </div>
+        
+        <div class="price">
+        <i class='bx bx-dollar'></i>
+        <span><?php echo $r['price']; ?></span>
+        
+        </div>
+        <a href='Fav.php?nn=<?php echo $r['name']; ?>'  class="box-btn"><i class='bx bxs-message-square-x'></i></a>
+        </div>
+        </div>
+        
+        
 
-    <div class="trendy-content">
-        <!--box1-->
-        <div class="itemBox" data-item="gaming">
-            <img src="img/trending4.jpg" alt="pubg">
-            <div class="box-text">
-                <h2>ToDo App</h2>
-                <h3>Learn</h3>
 
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
 
         </div>
+								
+                                    <?php } ?>
+   </section>                                 
 
-        <!--box2-->
-        <div class="itemBox" data-item="social">
-            <img src="img/facebook.png" alt="pubg">
-            <div class="box-text">
-                <h2>ToDo App</h2>
-                <h3>Action Game</h3>
+<?php
 
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
+if(isset($_GET['nn']))
+{
 
-                    </div>
+    
+  
+    $na = $_GET['nn'];
+   
 
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
+    $host = "localhost";
+    $dbUsername = "root";
+    $dbPassword = "";
+    $dbName = "app_store";
+    $con = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+    mysqli_query($con,"DELETE FROM fav WHERE `name`='$na'") or die(mysqli_error($con));
+    echo "<script type='text/javascript'>alert('Your data Is Deleted Successfully ')</script>";
 
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <!--box1-->
-        <div class="itemBox" data-item="tools">
-            <img src="img/to-do-list.png" alt="pubg">
-            <div class="box-text">
-                <h2>ToDo App</h2>
-                <h3>Action Game</h3>
-
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <!--box1-->
-        <div class="itemBox" data-item="gaming">
-            <img src="img/trending7.png" alt="pubg">
-            <div class="box-text">
-                <h2>ToDo App</h2>
-                <h3>Action Game</h3>
-
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <!--box1-->
-        <div class="itemBox" data-item="gaming">
-            <img src="img/trending6.jpg" alt="pubg">
-            <div class="box-text">
-                <h2>ToDo App</h2>
-                <h3>Action Game</h3>
-
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-        <!--box1-->
-        <div class="itemBox" data-item="kids">
-            <img src="img/new1.jpg" alt="game">
-            <div class="box-text">
-                <h2>Subway</h2>
-                <h3>Action Game</h3>
-
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <!--box1-->
-        <div class="itemBox" data-item="learn">
-            <img src="img/new3.jpg" alt="game">
-            <div class="box-text">
-                <h2>Subway</h2>
-                <h3>Action Game</h3>
-
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-
-        <!--box1-->
-        <div class="itemBox" data-item="social">
-            <img src="img/twitter.png" alt="game">
-            <div class="box-text">
-                <h2>Subway</h2>
-                <h3>Action Game</h3>
-
-                <div class="rate-down-price">
-                    <div class="rating">
-                        <i class='bx bxs-star'></i>
-                        <span>4.7</span>
-
-                    </div>
-
-                    <div class="price">
-                        <i class='bx bx-dollar'></i>
-                        <span>5</span>
-
-                    </div>
-                    <a href="deleteFav.php" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
-                </div>
-            </div>
-
-        </div>
-
-
-
-
-    </div>
-</section>
+}?>              
+        
 
 </body>
 </html>

@@ -19,8 +19,9 @@
 </head>
 <body>
 <nav>
-    <a class="nav"; style='padding: 20px;position:absolute; top:0.01px;left:0px;text-decoration: none;'  href='profile1.php'> Edit Profile </a>
-    <a class="nav"; style=' padding: 20px;position:absolute; top:0.01px;left:150px;text-decoration: none ;'  href="Fav.html"> Favorite List </a>
+<a class="nav" ; style=' padding: 20px;position:absolute; color: #3BC6F8;top:0.01px;left:0px;text-decoration: none;'  href="index.php"> Home </a>
+    <a class="nav" ; style='padding: 20px;position:absolute; color: #3BC6F8;top:0.01px;left:120px;text-decoration: none;'  href="profile1.php"> Edit Profile </a>
+    <a class="nav" ; style=' padding: 20px;position:absolute; color: #3BC6F8; top:0.01px;left:300px;text-decoration: none;'  href="Fav.php"> Favorite List </a>
 </nav>
 <br><br><br><br>
 <div style="height: 30px " ></div>

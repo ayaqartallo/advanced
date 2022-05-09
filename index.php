@@ -39,22 +39,21 @@
        
 
             <div class="navbar">
-          
-            
-             <li> <a href="#apps">All Apps</a></li>
-             <li> <a href="#games">Games</a></li>
-             <li>  <a href="#contact">Contact us</a></li>  
-             <?php
+            <?php
     if(isset($_SESSION['uid']))
         {
             ?>
              <li > <a>&nbsp;&nbsp;HI 🙋‍♀<?php echo $_SESSION['uid']; ?> </a></li>&nbsp;&nbsp;
 
-            
-       // echo $_SESSION['uid']; 
+     
        <?php                      
      }
     ?>  
+            
+             <li> <a href='index.php?c=all'>All Apps</a></li>
+             <li>  <a href='contactus.php'>Contact us</a></li>
+             <li>  <a href='logout.php?uid="<?php echo $_SESSION['uid']; ?>"'>Log Out</a></li>  
+             
               
                
                
@@ -127,7 +126,7 @@
         <span>free</span>
 
        </div>
-        <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+       <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
    </div>
 </div>
 
@@ -155,7 +154,7 @@
         <span>free</span>
 
        </div>
-        <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+       <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
    </div>
 
 </div>
@@ -182,7 +181,7 @@
             <span>free</span>
     
            </div>
-            <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+           <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
       
         </div>
     </div>
@@ -210,7 +209,7 @@
         <span>free</span>
 
        </div>
-        <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+       <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
    </div>
 
 </div>
@@ -238,7 +237,7 @@
             <span>5</span>
     
            </div>
-            <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+           <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
        </div>
     </div>
    
@@ -268,7 +267,7 @@
         <span>5</span>
 
        </div>
-        <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+       <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
    </div>
 </div>
 
@@ -299,7 +298,7 @@
 <span>5</span>
 
 </div>
-<a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+<a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
 </div>
 </div>
 
@@ -381,7 +380,7 @@
         <span><?php echo $r['Price']; ?></span>
         
         </div>
-        <a href="#" class="box-btn"><i class='bx bx-down-arrow-alt'></i></a>
+        <a href='index.php?id1=<?php echo $_SESSION['uid']; ?>&n1=<?php echo $r['AppName']; ?>&p1=<?php echo $r['Price']; ?>&c1=<?php echo $r['Category']; ?>&r1=<?php echo $r['Rating']; ?>'  class="box-btn"><i class='bx bx-heart'></i></a>
         </div>
         </div>
 
@@ -400,6 +399,30 @@
    
 
 ?>
+<?php
+
+if(isset($_GET['id1'])&&isset($_GET['n1'])&&isset($_GET['p1'])&&isset($_GET['c1'])&&isset($_GET['r1']))
+{
+
+    
+    $uid = $_GET['id1'];
+    $name = $_GET['n1'];
+    $price = $_GET['p1'];
+    $cat = $_GET['c1'];
+    $rate  = $_GET['r1'];
+
+    $host = "localhost";
+    $dbUsername = "root";
+    $dbPassword = "";
+    $dbName = "app_store";
+    $con = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+    mysqli_query($con,"insert into fav(idu,name,price,rate,category ) values('$uid','$name','$price','$rate','$cat')") or die(mysqli_error($con));
+    echo "<script type='text/javascript'>alert('Your data Is Add Inside Your Fav List');window.history.back(1);</script>";
+
+   // echo "<script type='text/javascript'>alert('Your data Is Add Inside Your Fav List')</script>";
+
+}?>
+
 
 <!--<right><input type="submit" name="s" value="Next" class="btn" " ></right>-->
 

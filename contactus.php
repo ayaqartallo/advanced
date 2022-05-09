@@ -42,6 +42,8 @@ if(isset($_POST['submit'])){
 }
 ?>
 <?php //include  "header.php"; ?>
+<a  href='index.php' class="btn btn-lg btn-default pull-left" style="color: #e2e6ea" >Back &rarr;</a>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 " id="form_container">
